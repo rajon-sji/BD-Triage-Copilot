@@ -3,6 +3,7 @@ import { createAgentUIStreamResponse } from "ai";
 import { createTriageAgent } from "@/lib/agent/triage-agent";
 import { buildTriagePrompt } from "@/lib/agent/prompt";
 import type { BriefSource } from "@/data/sample-briefs";
+import { triageStreamErrorMessage } from "@/lib/stream-error";
 
 export const maxDuration = 60;
 
@@ -30,6 +31,7 @@ export async function POST(req: Request) {
       return createAgentUIStreamResponse({
         agent,
         uiMessages: body.messages,
+        onError: triageStreamErrorMessage,
       });
     }
 
@@ -50,6 +52,7 @@ export async function POST(req: Request) {
           parts: [{ type: "text", text: buildTriagePrompt(brief) }],
         },
       ],
+      onError: triageStreamErrorMessage,
     });
   } catch (error) {
     const message =

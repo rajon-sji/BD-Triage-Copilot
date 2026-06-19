@@ -1,11 +1,10 @@
-import { Output, ToolLoopAgent, stepCountIs } from "ai";
+import { ToolLoopAgent, stepCountIs } from "ai";
 
 import { reasoningModel } from "@/lib/ai";
 import {
   buildTriageInstructions,
   buildTriagePrompt,
 } from "@/lib/agent/prompt";
-import { triageResultSchema } from "@/lib/agent/schemas";
 import { triageTools } from "@/lib/agent/tools";
 import type { BriefSource } from "@/data/sample-briefs";
 
@@ -14,7 +13,8 @@ export function createTriageAgent(source?: BriefSource | "") {
     model: reasoningModel,
     instructions: buildTriageInstructions(source),
     tools: triageTools,
-    output: Output.object({ schema: triageResultSchema }),
+    // Structured output (JSON mode) conflicts with tool calling on Gemini 2.5;
+    // final JSON is requested in instructions and parsed client-side.
     stopWhen: stepCountIs(12),
   });
 }

@@ -17,9 +17,12 @@ function tryParseTriageJson(raw: string): TriageResult | null {
   const trimmed = raw.trim();
   if (!trimmed) return null;
 
-  const candidates = [trimmed];
-  const jsonMatch = trimmed.match(/\{[\s\S]*\}/);
-  if (jsonMatch) candidates.push(jsonMatch[0]);
+  const fenceMatch = trimmed.match(/```(?:json)?\s*([\s\S]*?)```/i);
+  const candidates = [
+    trimmed,
+    fenceMatch?.[1]?.trim(),
+    trimmed.match(/\{[\s\S]*\}/)?.[0],
+  ].filter((value): value is string => Boolean(value));
 
   for (const candidate of candidates) {
     try {
