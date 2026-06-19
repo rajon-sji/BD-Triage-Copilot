@@ -1,0 +1,162 @@
+/* BD Triage Copilot — design tokens
+ * Brand hues sampled from the live SJ Innovation site (sjinnovation.com):
+ *   coral-orange  hsl(26 85% 55%)   amber hsl(37 100% 50%)
+ *   blue          hsl(208 58% 49%)  deep-blue hsl(211 82% 26%)
+ *   navy (ink)    hsl(217 33% 17%)
+ * Orange is the rare, deliberate accent (primary actions / AI "act" states).
+ * A teal -> indigo "intelligence" range carries the AI Working Moment & data.
+ */
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --radius: 0.625rem;
+
+  /* SJI brand — source of truth */
+  --brand-coral: hsl(26 85% 55%);
+  --brand-coral-strong: hsl(22 88% 48%);
+  --brand-amber: hsl(37 100% 50%);
+  --brand-blue: hsl(208 58% 49%);
+  --brand-blue-deep: hsl(211 82% 26%);
+  --brand-navy: hsl(217 33% 17%);
+  --brand-coral-tint: hsl(35 80% 96%);
+
+  /* Intelligence accents — AI working moment, data highlights */
+  --intel-teal: hsl(190 80% 40%);
+  --intel-cyan: hsl(196 80% 47%);
+  --intel-indigo: hsl(245 56% 56%);
+
+  /* Signature gradients */
+  --gradient-brand: linear-gradient(135deg, hsl(37 100% 50%), hsl(26 85% 55%));
+  --gradient-intel: linear-gradient(135deg, hsl(190 80% 40%), hsl(245 56% 56%));
+
+  /* Semantic tokens (shadcn) — light */
+  --background: hsl(0 0% 100%);
+  --foreground: hsl(217 33% 17%);
+  --card: hsl(0 0% 100%);
+  --card-foreground: hsl(217 33% 17%);
+  --popover: hsl(0 0% 100%);
+  --popover-foreground: hsl(217 33% 17%);
+  --primary: hsl(26 85% 55%);
+  --primary-foreground: hsl(0 0% 100%);
+  --secondary: hsl(214 32% 97%);
+  --secondary-foreground: hsl(217 33% 17%);
+  --muted: hsl(214 32% 97%);
+  --muted-foreground: hsl(220 9% 46%);
+  --accent: hsl(214 40% 96%);
+  --accent-foreground: hsl(217 33% 17%);
+  --destructive: hsl(0 72% 51%);
+  --destructive-foreground: hsl(0 0% 100%);
+  --border: hsl(220 13% 91%);
+  --input: hsl(220 13% 91%);
+  --ring: hsl(26 85% 55%);
+
+  /* Data viz */
+  --chart-1: hsl(26 85% 55%);
+  --chart-2: hsl(208 58% 49%);
+  --chart-3: hsl(190 80% 40%);
+  --chart-4: hsl(245 56% 56%);
+  --chart-5: hsl(37 100% 50%);
+}
+
+.dark {
+  --background: hsl(217 33% 11%);
+  --foreground: hsl(0 0% 98%);
+  --card: hsl(217 33% 14%);
+  --card-foreground: hsl(0 0% 98%);
+  --popover: hsl(217 33% 14%);
+  --popover-foreground: hsl(0 0% 98%);
+  --primary: hsl(26 85% 55%);
+  --primary-foreground: hsl(0 0% 100%);
+  --secondary: hsl(217 33% 18%);
+  --secondary-foreground: hsl(0 0% 98%);
+  --muted: hsl(217 33% 18%);
+  --muted-foreground: hsl(217 9% 70%);
+  --accent: hsl(217 33% 20%);
+  --accent-foreground: hsl(0 0% 98%);
+  --destructive: hsl(0 72% 55%);
+  --destructive-foreground: hsl(0 0% 98%);
+  --border: hsl(217 33% 22%);
+  --input: hsl(217 33% 22%);
+  --ring: hsl(26 85% 55%);
+
+  --chart-1: hsl(26 85% 58%);
+  --chart-2: hsl(208 58% 60%);
+  --chart-3: hsl(190 80% 50%);
+  --chart-4: hsl(245 56% 66%);
+  --chart-5: hsl(37 100% 55%);
+}
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Brand + intelligence, exposed as utility colors */
+  --color-brand-coral: var(--brand-coral);
+  --color-brand-coral-strong: var(--brand-coral-strong);
+  --color-brand-amber: var(--brand-amber);
+  --color-brand-blue: var(--brand-blue);
+  --color-brand-blue-deep: var(--brand-blue-deep);
+  --color-brand-navy: var(--brand-navy);
+  --color-brand-coral-tint: var(--brand-coral-tint);
+  --color-intel-teal: var(--intel-teal);
+  --color-intel-cyan: var(--intel-cyan);
+  --color-intel-indigo: var(--intel-indigo);
+
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

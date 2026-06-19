@@ -1,0 +1,28 @@
+---
+description: BD Triage Copilot project source of truth — read before any major decision
+alwaysApply: true
+---
+
+# BD Triage Copilot — working agreement
+
+The full source of truth lives in [CONTEXT.md](mdc:CONTEXT.md). Read the relevant section
+before any major decision. If a request conflicts with it, pause and flag it.
+
+Non-negotiables:
+
+- **Build incrementally.** Foundation first (setup, deps, design tokens, DB, seed), then
+  one feature at a time. After each step, stop and show before moving on.
+- **Confirm before big moves.** New dependency, data-model change, or app restructure →
+  explain what and why first.
+- **No invented complexity.** If it isn't in CONTEXT.md, it's out of scope. See §12 for
+  explicit non-goals (no auth, no export, no CRM push, no multi-tenant).
+- **North star (§3/§14):** messy brief in → grounded, confident first-response snapshot
+  out in seconds, backed by real SJI projects with match %. Optimize for that moment.
+- **Engine (§6):** real agentic loop with a `search_past_projects` tool, RAG over the
+  real portfolio corpus, deterministic budget math (hours × rate card). Keep the model
+  call isolated for easy swap.
+- **Design (§10):** calm, premium, confident; SJI brand (coral-orange accent used
+  sparingly, deep navy ink, teal→indigo intelligence). The "AI Working Moment" is the
+  signature element — no generic spinners.
+- **Stack (§9):** Next.js App Router + TS + Tailwind, Supabase + pgvector, Gemini Flash
+  + Google embeddings, Vercel AI SDK for streaming, Vercel hosting.
